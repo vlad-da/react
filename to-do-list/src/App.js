@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import ToDoItem from './to-do-item/ToDoItem';
+import todoData from './todoData';
 
 function App() {
+  const handleChnge = () => {
+    console.log("Значение поменялось");
+  }
+  const todoItems = todoData.map(item => {
+    return (
+      <ToDoItem 
+        key ={item.id}
+        description = {item.description}
+        completed ={item.completed}
+        handleChnge={() => {handleChnge()}}
+      />
+    )
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {todoItems}
     </div>
   );
 }
